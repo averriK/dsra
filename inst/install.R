@@ -1,5 +1,5 @@
 file.remove("NAMESPACE") |> suppressWarnings()
-# source("data-raw/DATASET.R")
+# source("data-raw/DATASET data is not .R")
 usethis::use_proprietary_license(copyright_holder = "Alejandro Verri Kozlowski")
 devtools::document()
 devtools::check()
