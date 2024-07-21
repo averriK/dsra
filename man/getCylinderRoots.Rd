@@ -4,21 +4,14 @@
 \alias{getCylinderRoots}
 \title{Title}
 \usage{
-getCylinderRoots(
-  no = 1,
-  mo,
-  lo,
-  model = "nonlinear",
-  extrapolate = TRUE,
-  OSF = 0.1
-)
+getCylinderRoots(mo, lo, no = 1, model = "nlm", extrapolate = TRUE, OSF = 0.1)
 }
 \arguments{
-\item{no}{Integer. Number of mode n=1..8}
-
 \item{mo}{Double. Inhomogeinity ratio. mo=0: homogeneous material. 0<=mo<=0.95}
 
 \item{lo}{Double. Truncation Ratio lo<=0.5. no=0: no truncation. (bo=0)}
+
+\item{no}{Integer. Number of mode n=1..8}
 
 \item{model}{Character. "linear", "nonlinear", "trees"}
 

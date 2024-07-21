@@ -18,7 +18,7 @@
 #'
 #' @examples
 #'
-getCylinderRoots <- function(no=1,mo,lo,model="nlm",extrapolate=TRUE,OSF=0.10){
+getCylinderRoots <- function(mo,lo,no=1,model="nlm",extrapolate=TRUE,OSF=0.10){
   on.exit(expr={rm(list = ls())}, add = TRUE)
  
   OK <- exists("CylinderRoots") & !is.null(CylinderRoots)
