@@ -4,7 +4,12 @@ getShearParameters(.newdata=data.table(Gravels=c(90,95,100),Sands=c(5,10,25),Hs=
 
 
 devtools::load_all()
-geSiteTable(Hs=78,USCS=c("GW","GP","GM","ML","SM"),NR=100,levels=c(0.16,0.50,"mean",0.84))
+geSiteTable(Hs=c(100,50,131),USCS=c("GW","GP","GM","ML","SM"),NR=25,levels=c(0.16,0.50,"mean",0.84))
 
-buildDSRA(Hs=123,h=1,Water=0,USCS=c(ValidGravels,ValidClays),POP=100)[["Gravels"]]
-
+devtools::load_all()
+getCylinderRoots(mo=0.45,lo=0.44)
+getCylinderRoots(mo=0.45,lo=0.44001,model="lm")
+getCylinderRoots(mo=0.45,lo=0.44001,model="nlm")
+getCylinderRoots(mo=0.45,lo=0.44001,model="dt")
+getCylinderRoots(mo=0.45,lo=0.44001,model="rf")
+getCylinderRoots(mo=0.99,lo=0.51)
