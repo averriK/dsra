@@ -4,14 +4,7 @@
 \alias{getCylinderRoots}
 \title{Title}
 \usage{
-getCylinderRoots(
-  no = 1,
-  mo,
-  lo,
-  model = "nonlinear",
-  extrapolate = TRUE,
-  OSF = 0.1
-)
+getCylinderRoots(no = 1, mo, lo, model = "nlm", extrapolate = TRUE, OSF = 0.1)
 }
 \arguments{
 \item{no}{Integer. Number of mode n=1..8}

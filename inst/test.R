@@ -1,10 +1,10 @@
 
 devtools::load_all()
-getShearParameters(.newdata=data.table(Gravels=c(90,95,100),Sands=c(5,10,25),Hs=c(90,100,110),Water=0,POP=100))
+geSiteTable(.newdata=data.table(Gravels=c(90,95,100),Sands=c(5,10,25),Hs=c(90,100,110),Water=0,POP=100))
 
 
 devtools::load_all()
-geSiteTable(Hs=c(100,50,131),USCS=c("GW","GP","GM","ML","SM"),NR=25,levels=c(0.16,0.50,"mean",0.84))
+getSiteProperties(Hs=c(100,50,131),USCS=c("GW","GP","GM","ML","SM"),NR=25,levels=c(0.16,0.50,"mean",0.84))
 
 devtools::load_all()
 getCylinderRoots(mo=0.45,lo=0.44)
