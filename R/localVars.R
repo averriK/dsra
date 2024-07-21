@@ -26,3 +26,4 @@ Clays <- NULL
 Silts <- NULL
 PGAref <- NULL
 Mw <- NULL
+. <- Ts <- VS30 <-  Z1000 <-  Z500 <-  an <- NULL

@@ -9,7 +9,7 @@
     for(hs in Hs){
       for(w in Water){
         for(ITER in NITER){
-          DSRA <- buildDSRA(Hs=hs,h=1.00,Water=w,USCS=USCS,Group=NULL,POP=pop)
+          DSRA <- geSiteTable(Hs=hs,h=1.00,Water=w,USCS=USCS,Group=NULL,POP=pop)
           if(!is.null(DSRA)){
             AUX <- DSRA$SiteProperties
             # print(AUX)
@@ -34,7 +34,7 @@
       for(hs in Hs){
         for(w in Water){
           for(ITER in NITER){
-            DSRA <- buildDSRA(Hs=hs,h=1.00,Water=w,USCS = NULL,Group=group,POP=pop)
+            DSRA <- geSiteTable(Hs=hs,h=1.00,Water=w,USCS = NULL,Group=group,POP=pop)
             if(!is.null(DSRA)){
               AUX <- DSRA$SiteProperties
               # print(AUX)
