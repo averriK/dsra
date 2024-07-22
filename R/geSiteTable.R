@@ -15,7 +15,6 @@
 #' @return DSRA object
 #' @export geSiteTable
 #'
-#' @import gmdp
 #' @import data.table
 #' @import digest 
 #' @import stats 
@@ -232,7 +231,7 @@ geSiteTable <- function(Hs,Water=0,USCS,Group=NULL,h = 0.50,DrID=NULL,UniformDis
   dtVs <- hs/VSm
   VSa <- (cumsum(hs)/cumsum(dtVs)) # |> round(digits = 1)
   VS30 <- (30/sum(dtVs[zi<=30])) |> round(digits = 1)
-  SID <- gmdp::Vs30toSID(VS30)
+  SID <- Vs30toSID(VS30)
   # Fit Go,mo model ----
   
   # if(any(zm/Hs<=0) || any(Gm<=0) ){browser()}
