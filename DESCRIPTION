@@ -1,6 +1,6 @@
 Package: dsra
-Title: Ground-Motion Design Parameters
-Version: 0.6.0
+Title: Dynamic Site Response Analysis
+Version: 0.2.0
 Authors@R: 
     person("Alejandro", "Verri Kozlowski", , "averri@fi.uba.ar", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-8535-1170"))
@@ -17,8 +17,7 @@ Imports:
     digest,
     triangle,
     utils,
-    rpart,
-    gmdp
+    rpart
 Depends: 
     R (>= 3.5)
 LazyData: true
