@@ -45,5 +45,5 @@
 #' }
 #' @usage data(SiteTable)
 #' @name SiteTable
-#' @data
+
 NULL

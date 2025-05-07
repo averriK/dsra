@@ -14,8 +14,7 @@
 #' @import data.table
 #' @importFrom stats predict
 #'
-#' @examples
-#'
+
 
 getSiteProperties<- function(Hs,USCS,POP=100,Water=0,NR=1,h=1.00,levels=c(0.05,0.5,"mean",0.95)){
   on.exit(expr={rm(list = ls())}, add = TRUE)

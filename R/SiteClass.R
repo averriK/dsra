@@ -11,5 +11,5 @@
 #' }
 #' @usage data(SiteClass)
 #' @name SiteClass
-#' @data
+
 NULL

@@ -11,5 +11,5 @@
 #' }
 #' @usage data(CylinderRoots)
 #' @name CylinderRoots
-#' @data
+
 NULL

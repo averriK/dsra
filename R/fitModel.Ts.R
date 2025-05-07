@@ -7,10 +7,7 @@
 #' @return Double. Site's fundamental period Ts in seconds
 #' @export fitModel.Ts
 #'
-
 #' @import data.table
-#'
-#' @examples
 #'
 fitModel.Ts <-  function(VSm,hs,zm) {
   on.exit(expr = {

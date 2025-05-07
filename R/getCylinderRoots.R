@@ -16,8 +16,7 @@
 #' @import rpart
 #' @import randomForest 
 #'
-#' @examples
-#'
+
 getCylinderRoots <- function(mo,lo,no=1,model="nlm",extrapolate=TRUE,OSF=0.10){
   on.exit(expr={rm(list = ls())}, add = TRUE)
  

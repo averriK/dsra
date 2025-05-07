@@ -22,8 +22,6 @@
 #' @import stringr 
 #' @importFrom utils data
 #'
-#' @examples
-#'
 geSiteTable <- function(Hs,Water=0,USCS,Group=NULL,h = 0.50,DrID=NULL,UniformDistribution=TRUE,POP = 100,IgnoreModelIntervals=TRUE,getSiteLayers=FALSE){
   
   on.exit(expr = {

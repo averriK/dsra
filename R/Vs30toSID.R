@@ -1,58 +1,55 @@
-#' Convert Vs30 in m/s to Site Class
+#' @title Convert Vs30 (m/s) to Site Class Identifier
 #'
-#' @param Vs30 Double/Vector. Vs30 in m/s
+#' @description
+#' Given one or more Vs30 values (in m/s), returns a character vector of site
+#' class designations (\code{"A", "B", "BC", "C", "CD", "D", "DE", "E"}). The
+#' classification thresholds are:
+#' \itemize{
+#'   \item A: Vs30 >= 1500
+#'   \item B: 900 <= Vs30 < 1500
+#'   \item BC: 640 <= Vs30 < 900
+#'   \item C: 440 <= Vs30 < 640
+#'   \item CD: 300 <= Vs30 < 440
+#'   \item D: 210 <= Vs30 < 300
+#'   \item DE: 150 <= Vs30 < 210
+#'   \item E: 0 <= Vs30 < 150
+#' }
 #'
-#' @return Character vector with Site Class.
-#' @export Vs30toSID
+#' @param Vs30 Numeric vector. One or more Vs30 values in m/s.
+#'
+#' @return A character vector of the same length as \code{Vs30},
+#'         with site class designations.
+#' @export
 #'
 #' @examples
-#'
-#' Vs30toSID(1500)
-#'
-#' Vs30toSID(c(120,790,3000,455))
-#'
-Vs30toSID <- function(Vs30){
-  on.exit(expr = {
-    rm(list = ls())
-  }, add = TRUE)
-  OK <- is.numeric(Vs30)
-  stopifnot(OK)
-  sapply(Vs30,Vs30toSID.char)
+#' Vs30toSID(1500)  # returns "A"
+#' Vs30toSID(c(120, 790, 3000, 455))
+Vs30toSID <- function(Vs30) {
+  if (!is.numeric(Vs30)) {
+    stop("`Vs30` must be numeric.")
+  }
+  sapply(Vs30, .Vs30toSID_char)
 }
 
-
-Vs30toSID.char <- function(Vs30) {
-  on.exit(expr = {
-    rm(list = ls())
-  }, add = TRUE)
-  OK <- is.numeric(Vs30)
-  stopifnot(OK)
-  if (Vs30 >= 1500) {
-    "A"
-  } # 1500
-  else if (Vs30 >= 900 & Vs30 < 1500) {
-    "B"
-  } # 1200
-  else if (Vs30 >= 640 & Vs30 < 900) {
-    "BC"
-  } # 770
-  else if (Vs30 >= 440 & Vs30 < 640) {
-    "C"
-  } # 540
-  else if (Vs30 >= 300 & Vs30 < 440) {
-    "CD"
-  } # 370
-  else if (Vs30 >= 210 & Vs30 < 300) {
-    "D"
-  } # 255
-  else if (Vs30 >= 150 & Vs30 < 210) {
-    "DE"
-  } # 180
-  else if (Vs30 >= 0 & Vs30 < 150) {
-    "E"
-  } # 150
-  else {
-    stop()
+# Internal helper that does the classification for a single numeric Vs30
+.Vs30toSID_char <- function(v) {
+  if (v >= 1500) {
+    return("A")
+  } else if (v >= 900) {
+    return("B")
+  } else if (v >= 640) {
+    return("BC")
+  } else if (v >= 440) {
+    return("C")
+  } else if (v >= 300) {
+    return("CD")
+  } else if (v >= 210) {
+    return("D")
+  } else if (v >= 150) {
+    return("DE")
+  } else if (v >= 0) {
+    return("E")
+  } else {
+    stop("Vs30 < 0 is invalid. Value = ", v)
   }
 }
-

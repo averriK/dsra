@@ -17,6 +17,6 @@
 #' }
 #' @usage data(ShearModelParameters)
 #' @name ShearModelParameters
-#' @data
+
 NULL
 

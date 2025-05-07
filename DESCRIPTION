@@ -1,6 +1,6 @@
 Package: dsra
 Title: Dynamic Site Response Analysis
-Version: 0.2.0
+Version: 0.2.1
 Authors@R: 
     person("Alejandro", "Verri Kozlowski", , "averri@fi.uba.ar", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-8535-1170"))
@@ -17,7 +17,8 @@ Imports:
     digest,
     triangle,
     utils,
-    rpart
+    rpart,
+    epoxy
 Depends: 
     R (>= 3.5)
 LazyData: true
