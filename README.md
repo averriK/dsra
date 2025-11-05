@@ -5,7 +5,7 @@
 R package for stochastic site response analysis in earthquake engineering. Implements Monte Carlo soil profile generation, empirical small-strain shear modulus models, and VS30-based site classification for seismic hazard studies.
 
 [![R Version](https://img.shields.io/badge/R-%E2%89%A53.5-blue)](https://www.r-project.org/)
-[![Version](https://img.shields.io/badge/version-0.3.0-green)](https://github.com/averriK/ar-dsra)
+[![Version](https://img.shields.io/badge/version-0.3.0-green)](https://github.com/averriK/dsra)
 [![License](https://img.shields.io/badge/License-Custom-blue.svg)](LICENSE)
 
 ## Contents
@@ -24,7 +24,7 @@ R package for stochastic site response analysis in earthquake engineering. Imple
 ## Installation
 
 ```r
-remotes::install_github("averriK/ar-dsra")
+remotes::install_github("averriK/dsra")
 ```
 
 ---
@@ -1116,6 +1116,45 @@ Models implemented from 20 literature sources (see `ShearModelParameters` datase
 19. ASTM D2487-17 (2017). *Standard Practice for Classification of Soils for Engineering Purposes (Unified Soil Classification System)*. ASTM International.
 
 20. Casagrande, A. (1948). Classification and identification of soils. *Transactions of the American Society of Civil Engineers*, **113**, 901-991. [Plasticity chart, A-line, U-line]
+
+---
+
+## Documentation
+
+Function documentation is available via R help system:
+
+```r
+# Site classification
+?SIDtoVs30        # Site class to VS30
+?Vs30toSID        # VS30 to site class
+
+# Site profile generation
+?geSiteTable      # Generate single site profile
+?getSiteProperties  # Monte Carlo statistics
+
+# Site period analysis
+?fitModel.Ts      # Site fundamental period
+
+# Characteristic equations
+?getCylinderRoots  # Solve eigenvalue problem
+```
+
+For package overview:
+```r
+?dsra
+```
+
+---
+
+## Contributing
+
+Issues and pull requests are welcome at the [GitHub repository](https://github.com/averriK/dsra).
+
+For bug reports, please include:
+- Operating system and version
+- R version
+- Complete code that caused the issue
+- Error messages and logs
 
 ---
 
