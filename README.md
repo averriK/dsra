@@ -68,6 +68,16 @@ Vs30toSID(760)  # "BC"
 SIDtoVs30("C")  # 540
 ```
 
+## API overview
+
+- geSiteTable(Hs, Water=0, USCS, Group=NULL, h=0.50, DrID=NULL, Vref=760, UniformDistribution=TRUE, POP=100, IgnoreModelIntervals=TRUE, getSiteLayers=FALSE): returns a data.table with site properties; set getSiteLayers=TRUE for per-layer table.
+- getSiteProperties(Hs, USCS, POP=100, Water=0, NR=1, h=1.00, levels=c(0.05, 0.5, "mean", 0.95), Vref=760): Monte Carlo summary of site properties.
+- getCylinderRoots(mo, lo, no=1, model="nlm", extrapolate=TRUE, OSF=0.10): characteristic roots via interpolation models ("lm", "nlm", "dt", "rf").
+- fitModel.Ts(VSm, hs, zm): computes fundamental period Ts (exported).
+- Vs30toSID(Vs30), SIDtoVs30(SID): conversion utilities.
+
+Note: geSiteTable() returns a data.table with columns like Hs, mo, VSo, Ts. The manual formula example uses profile$Hs[1], profile$mo[1], profile$VSo[1]; Ts is also available directly as profile$Ts[1].
+
 ## Application
 
 dsra is used to estimate fundamental periods (Ts) and inhomogeneity ratios (mo) for:
