@@ -2,6 +2,8 @@
 
 **Dynamic Site Response Analysis**
 
+> **Last updated:** November 13, 2025
+
 R package for generating synthetic soil profiles and computing fundamental periods of slopes and embankments using inhomogeneous truncated shear beam theory.
 
 [![R Version](https://img.shields.io/badge/R-%3E%3D%203.5-blue)](https://www.r-project.org/)
