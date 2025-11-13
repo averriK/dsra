@@ -2,12 +2,9 @@
 
 **Dynamic Site Response Analysis**
 
-> **Last updated:** November 13, 2025
+[![R Version](https://img.shields.io/badge/R-%3E%3D%203.5-blue)](https://www.r-project.org/) [![Version](https://img.shields.io/badge/version-0.3.0-green)](https://github.com/averriK/dsra)
 
 R package for generating synthetic soil profiles and computing fundamental periods of slopes and embankments using inhomogeneous truncated shear beam theory.
-
-[![R Version](https://img.shields.io/badge/R-%3E%3D%203.5-blue)](https://www.r-project.org/)
-[![Version](https://img.shields.io/badge/version-0.3.0-green)](https://github.com/averriK/dsra)
 
 ## What is it?
 
@@ -18,7 +15,7 @@ dsra generates synthetic soil profiles with random geotechnical properties based
 - **Synthetic profile generation**: Random sampling of void ratio, unit weight, plasticity based on USCS
 - **Ishihara shear modulus model**: G(z,e) from void ratio and octahedral stress
 - **Fundamental period calculation**: Ts via Rayleigh method for Vs profiles
-- **Inhomogeneity characterization**: mo parameter for power-law shear modulus variation G ~ z^mo
+- **Inhomogeneity characterization**: mo parameter for power-law shear modulus variation
 - **Modal analysis**: Characteristic roots (eigenvalues) for inhomogeneous truncated beams
 - **Uncertainty quantification**: Multiple realizations with quantile estimates
 - **Site classification**: Conversion between Vs30 and site classes (A, B, BC, C, CD, D, DE, E)
@@ -34,90 +31,59 @@ devtools::install_github("averriK/dsra")
 ```r
 library(dsra)
 
-# Generate single synthetic profile
-profile <- geSiteTable(
+# Generate synthetic profile with quantiles
+site_props <- getSiteProperties(
   Hs = 30,                      # Embankment height (m)
   USCS = c("SM", "ML", "CL"),   # Soil types
-  h = 0.50,                     # Layer thickness (m)
-  Water = 0.2,                  # Water table at 20% of Hs from surface
-  POP = 100,                    # Pre-consolidation pressure (kPa)
+  h = 1.00,                     # Layer thickness (m)
+  NR = 100,                     # Number of realizations
+  levels = c(0.16, "mean", 0.84),
   Vref = 760                    # Bedrock Vs (m/s)
 )
 
-# Generate multiple realizations with quantiles
-site_props <- getSiteProperties(
-  Hs = 30,
-  USCS = c("SM", "ML", "CL"),
-  h = 1.00,
-  NR = 100,                     # Number of realizations
-  levels = c(0.16, "mean", 0.84),
-  Vref = 760
-)
-
 # Compute characteristic roots for modal analysis
-# mo: inhomogeneity ratio (0 = homogeneous)
-# lo: truncation ratio (berm influence)
-# no: mode number (1 = fundamental)
-an <- getCylinderRoots(mo = 0.5, lo = 0.3, no = 1, model = "nlm")
-
-# Calculate fundamental period from eigenvalue
-Ts <- (4 * pi * profile$Hs[1]) / (an * (2 - profile$mo[1]) * profile$VSo[1])
+an <- getCylinderRoots(
+  mo = 0.5,                     # Inhomogeneity ratio (0 = homogeneous)
+  lo = 0.3,                     # Truncation ratio (berm influence)
+  no = 1,                       # Mode number (1 = fundamental)
+  model = "nlm"                 # Interpolation model
+)
 
 # Site classification utilities
 Vs30toSID(760)  # "BC"
 SIDtoVs30("C")  # 540
 ```
 
-## API overview
+## Documentation
 
-- geSiteTable(Hs, Water=0, USCS, Group=NULL, h=0.50, DrID=NULL, Vref=760, UniformDistribution=TRUE, POP=100, IgnoreModelIntervals=TRUE, getSiteLayers=FALSE): returns a data.table with site properties; set getSiteLayers=TRUE for per-layer table.
-- getSiteProperties(Hs, USCS, POP=100, Water=0, NR=1, h=1.00, levels=c(0.05, 0.5, "mean", 0.95), Vref=760): Monte Carlo summary of site properties.
-- getCylinderRoots(mo, lo, no=1, model="nlm", extrapolate=TRUE, OSF=0.10): characteristic roots via interpolation models ("lm", "nlm", "dt", "rf").
-- fitModel.Ts(VSm, hs, zm): computes fundamental period Ts (exported).
-- Vs30toSID(Vs30), SIDtoVs30(SID): conversion utilities.
+See function documentation via R help:
 
-Note: geSiteTable() returns a data.table with columns like Hs, mo, VSo, Ts. The manual formula example uses profile$Hs[1], profile$mo[1], profile$VSo[1]; Ts is also available directly as profile$Ts[1].
+```r
+?dsra
+?getSiteProperties
+?geSiteTable
+?getCylinderRoots
+```
+
+Full API: `geSiteTable()`, `getSiteProperties()`, `getCylinderRoots()`, `fitModel.Ts()`, `Vs30toSID()`, `SIDtoVs30()`
 
 ## Application
 
-dsra is used to estimate fundamental periods (Ts) and inhomogeneity ratios (mo) for:
-
-- **Seismic slope stability**: Ts is input for flexible-block Newmark displacement models (Bray & Travasarou 2007, Bray & Macedo 2017/2019)
-- **Tailings storage facilities**: TSF embankment dynamic characterization
-- **Waste rock dumps**: WRD seismic response parameters
-- **Site response analysis**: Vs30 and basin depth (Z500, Z1000) estimation
-
-Complete workflows available in:
-- `~/github/psha/R/runTs.R` - Period calculation for multiple geometries/materials
-- `~/github/psha/_chapters/slope.qmd` - Theory and methodology
-- `~/github/psha/_appendix/slope_appendix.qmd` - Ishihara parameters and references
-
-## Theory
-
-### Fundamental Period (Gazetas & Dakoulas 1985)
-
-$$T_s^{(j)} = \frac{4\pi H_{max}}{a^{(j)}(2-m_o)v_S^o}$$
-
-where $a^{(j)}$ is the j-th characteristic root (eigenvalue) depending on inhomogeneity ratio $m_o$ and truncation ratio $\lambda_o$.
-
-### Shear Modulus Model (Ishihara 1997)
-
-$$G(z,e_o) = A \frac{(C_e-e_o)^2}{1+e_o} \left(\frac{\sigma'_o(z)}{p_{ref}}\right)^n$$
-
-where A, Ce, n are material constants tabulated for gravels, sands, and fines.
+dsra is used to estimate fundamental periods (Ts) and inhomogeneity ratios (mo) for seismic slope stability analysis using flexible-block Newmark displacement models (Bray & Travasarou 2007, Bray & Macedo 2017/2019). Applications include tailings storage facilities, waste rock dumps, and site response analysis.
 
 ## Dependencies
 
 - R (>= 3.5)
-- data.table, stats, utils
+- data.table, stats, utils, stringr, digest, triangle
 - randomForest, rpart (for root interpolation)
-- stringr, digest, triangle
 
 ## References
 
 Gazetas, G., & Dakoulas, P. (1985). Seismic analysis and design of rockfill dams: State-of-the-art. *Soil Dynamics and Earthquake Engineering*, 4(1), 1-14.
 
 Ishihara, K. (1997). *Soil Behaviour in Earthquake Geotechnics*. Oxford University Press.
+
+Bray, J. D., & Travasarou, T. (2007). Simplified procedure for estimating earthquake-induced deviatoric slope displacements. *Journal of Geotechnical and Geoenvironmental Engineering*, 133(4), 381-392.
 
 ## License
 
