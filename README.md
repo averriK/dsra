@@ -67,6 +67,14 @@ See function documentation via R help:
 
 Full API: `geSiteTable()`, `getSiteProperties()`, `getCylinderRoots()`, `fitModel.Ts()`, `Vs30toSID()`, `SIDtoVs30()`
 
+### Main functions
+- geSiteTable(Hs, USCS, ...): Build layer-wise site table with Vs profile, fundamental period (Ts), inhomogeneity ratio (mo); optional detailed site layers.
+- getSiteProperties(Hs, USCS, ...): Monte Carlo generation of synthetic site properties and quantiles for Ts and mo.
+- getCylinderRoots(mo, lo, ...): Compute characteristic roots (eigenvalues) for inhomogeneous truncated shear-beam modal analysis.
+- fitModel.Ts(VSm, hs, zm): Fit truncated shear-beam model parameters from Vs profile and geometry to estimate Ts.
+- Vs30toSID(Vs30): Convert Vs30 to NEHRP-style site class.
+- SIDtoVs30(SID): Map site class back to representative Vs30.
+
 ## Application
 
 dsra is used to estimate fundamental periods (Ts) and inhomogeneity ratios (mo) for seismic slope stability analysis using flexible-block Newmark displacement models (Bray & Travasarou 2007, Bray & Macedo 2017/2019). Applications include tailings storage facilities, waste rock dumps, and site response analysis.
