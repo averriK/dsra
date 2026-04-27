@@ -15,4 +15,10 @@ exclude:
   - examples/
   - tests/
   - src/
-  - docs/
+
+plugins:
+  - jekyll-relative-links
+
+relative_links:
+  enabled: true
+  collections: true
