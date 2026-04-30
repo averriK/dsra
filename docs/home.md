@@ -8,16 +8,24 @@ permalink: /
 
 **Dynamic Site Response Analysis**
 
-R package for generating synthetic soil profiles and computing fundamental periods of slopes and embankments using inhomogeneous truncated shear beam theory.
+R package for generating synthetic soil profiles and computing fundamental periods of slopes and embankments using inhomogeneous truncated shear beam theory. Implements Ishihara's shear modulus model and Gazetas & Dakoulas' inhomogeneous truncated shear beam theory.
 
-## Install
+## Start here
+
+- [Quick start]({{ "/docs/quickstart/" | relative_url }}) — install + minimal worked example.
+- [Documentation hub]({{ "/docs/" | relative_url }}) — full index.
+
+## API help
+
+For function-level reference, prefer the in-package R help:
 
 ```r
-devtools::install_github("averriK/dsra")
+?dsra
+?getSiteProperties
+?geSiteTable
+?getCylinderRoots
 ```
 
-## Documentation
+## If you read one page only
 
-- [Quick start]({{ "/docs/quickstart/" | relative_url }})
-- [All docs]({{ "/docs/" | relative_url }})
-- [Full README on GitHub](https://github.com/averriK/dsra#readme)
+Read: [Quick start]({{ "/docs/quickstart/" | relative_url }}).
