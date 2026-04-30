@@ -54,27 +54,6 @@ Vs30toSID(760)  # "BC"
 SIDtoVs30("C")  # 540
 ```
 
-## Documentation
-
-See function documentation via R help:
-
-```r
-?dsra
-?getSiteProperties
-?geSiteTable
-?getCylinderRoots
-```
-
-Full API: `geSiteTable()`, `getSiteProperties()`, `getCylinderRoots()`, `fitModel.Ts()`, `Vs30toSID()`, `SIDtoVs30()`
-
-### Main functions
-- geSiteTable(Hs, USCS, ...): Build layer-wise site table with Vs profile, fundamental period (Ts), inhomogeneity ratio (mo); optional detailed site layers.
-- getSiteProperties(Hs, USCS, ...): Monte Carlo generation of synthetic site properties and quantiles for Ts and mo.
-- getCylinderRoots(mo, lo, ...): Compute characteristic roots (eigenvalues) for inhomogeneous truncated shear-beam modal analysis.
-- fitModel.Ts(VSm, hs, zm): Fit truncated shear-beam model parameters from Vs profile and geometry to estimate Ts.
-- Vs30toSID(Vs30): Convert Vs30 to NEHRP-style site class.
-- SIDtoVs30(SID): Map site class back to representative Vs30.
-
 ## Application
 
 dsra is used to estimate fundamental periods (Ts) and inhomogeneity ratios (mo) for seismic slope stability analysis using flexible-block Newmark displacement models (Bray & Travasarou 2007, Bray & Macedo 2017/2019). Applications include tailings storage facilities, waste rock dumps, and site response analysis.
@@ -92,6 +71,26 @@ Gazetas, G., & Dakoulas, P. (1985). Seismic analysis and design of rockfill dams
 Ishihara, K. (1997). *Soil Behaviour in Earthquake Geotechnics*. Oxford University Press.
 
 Bray, J. D., & Travasarou, T. (2007). Simplified procedure for estimating earthquake-induced deviatoric slope displacements. *Journal of Geotechnical and Geoenvironmental Engineering*, 133(4), 381-392.
+
+## Documentation
+
+See function documentation via R help:
+
+```r
+?dsra
+?getSiteProperties
+?geSiteTable
+?getCylinderRoots
+```
+
+### Exported API
+
+- `geSiteTable(Hs, USCS, ...)` — Build layer-wise site table with Vs profile, fundamental period (Ts), inhomogeneity ratio (mo); optional detailed site layers.
+- `getSiteProperties(Hs, USCS, ...)` — Monte Carlo generation of synthetic site properties and quantiles for Ts and mo.
+- `getCylinderRoots(mo, lo, ...)` — Compute characteristic roots (eigenvalues) for inhomogeneous truncated shear-beam modal analysis.
+- `fitModel.Ts(VSm, hs, zm)` — Fit truncated shear-beam model parameters from Vs profile and geometry to estimate Ts.
+- `Vs30toSID(Vs30)` — Convert Vs30 to NEHRP-style site class.
+- `SIDtoVs30(SID)` — Map site class back to representative Vs30.
 
 ## License
 

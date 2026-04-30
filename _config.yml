@@ -1,8 +1,13 @@
+title: dsra
+description: Dynamic Site Response Analysis
 markdown: kramdown
 kramdown:
   math_engine: mathjax
   input: GFM
   syntax_highlighter: rouge
+
+github:
+  repository_url: https://github.com/averriK/dsra
 
 include:
   - README.md
