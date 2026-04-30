@@ -6,7 +6,22 @@
 
 R package for generating synthetic soil profiles and computing fundamental periods of slopes and embankments using inhomogeneous truncated shear beam theory.
 
-## What is it?
+## Contents
+
+- [Overview](#overview)
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Application](#application)
+- [Exported API](#exported-api)
+- [Dependencies](#dependencies)
+- [References](#references)
+- [Documentation (how to read)](#documentation-how-to-read)
+- [License](#license)
+- [Citation](#citation)
+- [Author](#author)
+
+## Overview
 
 dsra generates synthetic soil profiles with random geotechnical properties based on USCS classification and computes fundamental periods (Ts) and shear modulus variation parameters (mo) for seismic analysis of slopes and embankments. Implements Ishihara's shear modulus model and Gazetas & Dakoulas' inhomogeneous truncated shear beam theory.
 
@@ -58,6 +73,15 @@ SIDtoVs30("C")  # 540
 
 dsra is used to estimate fundamental periods (Ts) and inhomogeneity ratios (mo) for seismic slope stability analysis using flexible-block Newmark displacement models (Bray & Travasarou 2007, Bray & Macedo 2017/2019). Applications include tailings storage facilities, waste rock dumps, and site response analysis.
 
+## Exported API
+
+- `geSiteTable(Hs, USCS, ...)` — Build layer-wise site table with Vs profile, fundamental period (Ts), inhomogeneity ratio (mo); optional detailed site layers.
+- `getSiteProperties(Hs, USCS, ...)` — Monte Carlo generation of synthetic site properties and quantiles for Ts and mo.
+- `getCylinderRoots(mo, lo, ...)` — Compute characteristic roots (eigenvalues) for inhomogeneous truncated shear-beam modal analysis.
+- `fitModel.Ts(VSm, hs, zm)` — Fit truncated shear-beam model parameters from Vs profile and geometry to estimate Ts.
+- `Vs30toSID(Vs30)` — Convert Vs30 to NEHRP-style site class.
+- `SIDtoVs30(SID)` — Map site class back to representative Vs30.
+
 ## Dependencies
 
 - R (>= 3.5)
@@ -72,9 +96,17 @@ Ishihara, K. (1997). *Soil Behaviour in Earthquake Geotechnics*. Oxford Universi
 
 Bray, J. D., & Travasarou, T. (2007). Simplified procedure for estimating earthquake-induced deviatoric slope displacements. *Journal of Geotechnical and Geoenvironmental Engineering*, 133(4), 381-392.
 
-## Documentation
+## Documentation (how to read)
 
-See function documentation via R help:
+Start at the documentation index:
+
+- [docs/index.md](docs/index.md)
+
+Topic pages:
+
+- [Quick start](docs/quickstart.md) — install + minimal worked examples (`getSiteProperties`, `geSiteTable`, `getCylinderRoots`, `Vs30toSID`/`SIDtoVs30`).
+
+For function-level reference, prefer the in-package R help:
 
 ```r
 ?dsra
@@ -82,15 +114,6 @@ See function documentation via R help:
 ?geSiteTable
 ?getCylinderRoots
 ```
-
-### Exported API
-
-- `geSiteTable(Hs, USCS, ...)` — Build layer-wise site table with Vs profile, fundamental period (Ts), inhomogeneity ratio (mo); optional detailed site layers.
-- `getSiteProperties(Hs, USCS, ...)` — Monte Carlo generation of synthetic site properties and quantiles for Ts and mo.
-- `getCylinderRoots(mo, lo, ...)` — Compute characteristic roots (eigenvalues) for inhomogeneous truncated shear-beam modal analysis.
-- `fitModel.Ts(VSm, hs, zm)` — Fit truncated shear-beam model parameters from Vs profile and geometry to estimate Ts.
-- `Vs30toSID(Vs30)` — Convert Vs30 to NEHRP-style site class.
-- `SIDtoVs30(SID)` — Map site class back to representative Vs30.
 
 ## License
 
